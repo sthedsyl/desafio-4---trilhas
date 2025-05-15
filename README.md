@@ -1,20 +1,20 @@
-# 📊 Indicadores Sociais do Estado do Maranhão - Equipe 3
+# Indicadores Sociais do Estado do Maranhão - Equipe 3
 
-[![Status do Projeto](https://img.shields.io/badge/status-em%20desenvolvimento-%23E6F4EA)](#)  
-![GitHub repo size](https://img.shields.io/github/repo-size/sthedsyl/desafio-4---trilhas)  
+[![Status do Projeto](https://img.shields.io/badge/status-em%20desenvolvimento-%23E6F4EA)](#)
+![GitHub repo size](https://img.shields.io/github/repo-size/sthedsyl/desafio-4---trilhas)
 ![GitHub contributors](https://img.shields.io/github/contributors/sthedsyl/desafio-4---trilhas)
 
 > **Dashboard interativo com indicadores sociais do Estado do Maranhão**, desenvolvido pela Equipe 3 do curso de Front-End e UX/UI Design - Trilhas Inova Maranhão, em parceria com o Governo do Estado, SECTI e FAPEMA.
 
 ---
 
-## 🎯 Objetivo do Projeto
+## Objetivo do Projeto
 
 Este projeto tem como objetivo desenvolver um **dashboard web interativo**, que exiba indicadores sociais relevantes do Estado do Maranhão, facilitando o acesso da população e de gestores públicos a informações que auxiliem na criação de políticas públicas.
 
 ---
 
-## 📚 Contexto do Desafio
+## Contexto do Desafio
 
 Este projeto faz parte do **Desafio 4** do curso **Front-End Trilhas Inova Maranhão**, que propõe:
 
@@ -25,7 +25,7 @@ Este projeto faz parte do **Desafio 4** do curso **Front-End Trilhas Inova Maran
 
 ---
 
-## 📌 Indicadores Selecionados
+## Indicadores Selecionados
 
 - Renda média per capita  
 - Escolaridade média  
@@ -36,13 +36,13 @@ Este projeto faz parte do **Desafio 4** do curso **Front-End Trilhas Inova Maran
 
 ---
 
-## 🔗 Fonte dos Dados
+## Fonte dos Dados
 
 Esse projeto utiliza **APIs públicas**, especialmente a do [IBGE](https://servicodados.ibge.gov.br/api/docs/), para obter dados relevantes sobre os indicadores sociais no Estado do Maranhão.
 
 ---
 
-## 🗂 Organização do Projeto
+## Organização do Projeto
 
 - `index.html` — Estrutura da Landing Page  
 - `style.css` — Estilização com CSS  
@@ -53,7 +53,7 @@ Esse projeto utiliza **APIs públicas**, especialmente a do [IBGE](https://servi
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **HTML5**  
 - **CSS3**  
@@ -67,7 +67,7 @@ Esse projeto utiliza **APIs públicas**, especialmente a do [IBGE](https://servi
 
 ---
 
-## 🛠 Outras Ferramentas
+## Outras Ferramentas
 
 - **OBS Studio**  
 - **Microsoft Word**  
@@ -75,58 +75,55 @@ Esse projeto utiliza **APIs públicas**, especialmente a do [IBGE](https://servi
 
 ---
 
-## 🔗 Repositório
+## Repositório
 
 [Link do repositório no GitHub](https://github.com/sthedsyl/desafio-4---trilhas)
 
 ---
 
-## 📑 Documentação
+## Documentação
 
 [Link para a documentação do projeto](https://exemplo.com/documentacao)
 
 ---
 
-## 💻 Demonstração
+## Demonstração
 
 [Acesse a demonstração aqui](https://exemplo.com/projeto)
 
 ---
 
-## 🗺 Visualizações Sugeridas
+## Visualizações Sugeridas
 
 Nosso projeto propõe uma análise interativa e acessível de indicadores sociais relevantes **no Estado do Maranhão**. A seguir, listamos as visualizações que serão incorporadas para enriquecer a experiência do usuário:
 
-### 🧭 Mapa Interativo
-
+### Mapa Interativo
 - Exibição geográfica de múltiplos indicadores por **município maranhense**.  
-- Possibilidade de explorar:  
-  - **Renda média per capita**  
-  - **Escolaridade média**  
-  - **Taxa de homicídios**  
-  - **Acesso ao saneamento básico**  
+- Possibilidade de explorar:
+  - **Renda média per capita**
+  - **Escolaridade média**
+  - **Taxa de homicídios**
+  - **Acesso ao saneamento básico**
   - Entre outros
 
-### 📊 Gráficos Propostos
+### Gráficos Propostos
+- **Gráfico de Barras:** comparação da **renda média per capita** entre municípios do Maranhão.  
+- **Gráfico de Barras:** exibição da **escolaridade média** por município.  
+- **Gráfico de Colunas:** representação da **taxa de homicídios** por região dentro do estado.  
+- **Gráfico de Pizza ou Colunas:** para indicar o **nível de acesso ao saneamento básico**.  
+- **Gráfico de Linhas (futuro):** evolução temporal da **população total** nos municípios maranhenses.  
+- **Mapa de Calor:** distribuição da **densidade demográfica** no Maranhão.
 
-> **Gráfico de Barras:** comparação da **renda média per capita** entre municípios do Maranhão.  
-> **Gráfico de Barras:** exibição da **escolaridade média** por município.  
-> **Gráfico de Colunas:** representação da **taxa de homicídios** por região dentro do estado.  
-> **Gráfico de Pizza ou Colunas:** para indicar o **nível de acesso ao saneamento básico**.  
-> **Gráfico de Linhas (futuro):** evolução temporal da **população total** nos municípios maranhenses.  
-> **Mapa de Calor:** distribuição da **densidade demográfica** no Maranhão.
-
-### 📋 Painéis e Detalhamento
-
+### Painéis e Detalhamento
 - Painéis laterais com números atualizados e resumo de cada indicador.  
-- Filtros interativos para seleção de:  
-  - Município  
-  - Ano  
+- Filtros interativos para seleção de:
+  - Município
+  - Ano
   - Categoria social
 
 ---
 
-## ⏭ Próximos Passos
+## Próximos Passos
 
 Estamos comprometidos com o aperfeiçoamento contínuo da aplicação. As próximas etapas incluem:
 
@@ -138,7 +135,7 @@ Estamos comprometidos com o aperfeiçoamento contínuo da aplicação. As próxi
 
 ---
 
-## 👥 Equipe 3
+## Equipe 3
 
 | Integrante                      | Função              | GitHub                              |
 |--------------------------------|---------------------|-------------------------------------|
@@ -147,7 +144,7 @@ Estamos comprometidos com o aperfeiçoamento contínuo da aplicação. As próxi
 | **Vitória Eduarda**            | Front-End Developer | [@cordeirovics](https://github.com/cordeirovics) |
 | **Yasmin Cantanhede**          | Front-End Developer | [@yasmincantanhede](https://github.com/yasmincantanhede) |
 
-### 🎨 Design
+### Design
 
 | Integrante                      | Função            |
 |--------------------------------|-------------------|
@@ -156,13 +153,15 @@ Estamos comprometidos com o aperfeiçoamento contínuo da aplicação. As próxi
 
 ---
 
-## ⚖️ Licença
+## Licença
 
 Este projeto está licenciado sob os termos da **Licença MIT**.  
 Confira o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
-## 🏆 Agradecimentos
+## Agradecimentos
 
 Feito com dedicação pela **Equipe 3**, como parte do curso **Front-End Trilhas Inova Maranhão**, com o apoio da **SECTI** e da **FAPEMA**.
+
+---
