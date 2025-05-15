@@ -140,9 +140,9 @@ Estamos comprometidos com o aperfeiçoamento contínuo da aplicação. As próxi
 | Integrante                      | Função              | GitHub                              |
 |--------------------------------|---------------------|-------------------------------------|
 | **Merilyn Aroucha Barros**     | Front-End Developer | [@Merilyn2001](https://github.com/Merilyn2001) |
-| **Sthefane Dias**              | Front-End Developer | [@sthedsyl](https://github.com/sthedsyl) |
-| **Vitória Eduarda**            | Front-End Developer | [@cordeirovics](https://github.com/cordeirovics) |
-| **Yasmin Cantanhede**          | Front-End Developer | [@yasmincantanhede](https://github.com/yasmincantanhede) |
+| **Sthefane Dias Silva**              | Front-End Developer | [@sthedsyl](https://github.com/sthedsyl) |
+| **Vitória Eduarda Feitosa**            | Front-End Developer | [@cordeirovics](https://github.com/cordeirovics) |
+| **Yasmin Cantanhede Santos**          | Front-End Developer | [@yasmincantanhede](https://github.com/yasmincantanhede) |
 
 ### Design
 
