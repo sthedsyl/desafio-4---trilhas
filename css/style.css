@@ -1,5 +1,248 @@
+/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background-color: #E5E5E5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  gap: 10px;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #0A198F;
+  font-weight: 500;
+}
+
+.menu a.ativo {
+  color: #0A198F; /* cor do link ativo */
+  font-weight: 700;
+  position: relative;
+}
+
+.menu a.ativo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* dá uma espaçada pra ficar de boa */
+  height: 3px;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 2px;
+}
+
+.menu .botao-vermelho {
+  background-color: #D50000;
+  color: white;
+  padding: 6px 12px; /* padding mais compacto */
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.3s ease; /* animação suave */
+}
+
+.menu .botao-vermelho:hover {
+  background-color: #a80000; /* cor mais escura ao passar o mouse */
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin-top: 80px;
+}
+
+/* LADO ESQUERDO - BRANCO */
+.lado-esquerdo {
+  flex: 1;
+  background-color: white;
+  color: #333;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #0A198F;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+}
+
+.intro p {
+  font-size: 18px;
+  margin-bottom: 15px;
+  max-width: 500px;
+  text-align: left;
+}
+
+.intro .menor {
+  font-size: 14px;
+  opacity: 0.9;
+  max-width: 500px;
+}
+
+/* Botão com lupa */
+.botao-lupa {
+  margin-top: 20px;
+  background-color: #D50000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* LADO DIREITO - AZUL */
+.lado-direito {
+  flex: 1;
+  background-color: #0A198F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;  /*essa parte faz a imagem não aparecer na parte que extrapolou*/
+}
+
+.imagem-mapa {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagem-mapa img {
+  max-width: none;  /* tira o limite do tamanho */
+  width: 700px;     /* define um tamanho fixo manual */
+  height: auto;
+  position: relative;
+  left: -30px;
+}
+
+/* HAMBÚRGUER */
+.hamburguer {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburguer span {
+  height: 3px;
+  width: 25px;
+  background-color: #0A198F;
+  border-radius: 2px;
+}
+
+/* RESPONSIVO PARA CELULAR */
+@media (max-width: 768px) {
+  .hamburguer {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end; /* alinha tudo à direita */
+    position: absolute;
+    top: 80px;
+    right: 20px; /* encosta no lado direito */
+    background-color: white;
+    width: auto; /* deixa a caixa menor, do tamanho dos links */
+    padding: 20px;
+    gap: 10px;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .menu.ativo {
+    display: flex;
+  }
+
+  .menu a {
+    text-align: right;
+    font-size: 16px;
+    white-space: nowrap; /* impede quebra de linha */
+  }
+
+  .menu .botao-vermelho {
+    width: fit-content;
+    padding: 6px 12px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .lado-esquerdo,
+  .lado-direito {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .intro p {
+    font-size: 16px;
+  }
+
+  .imagem-mapa img {
+    max-width: 100%;
+    left: 0;
+  }
 }
