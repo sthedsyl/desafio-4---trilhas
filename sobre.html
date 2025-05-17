@@ -1,15 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre - DadosdoMA</title>
-    <link rel="stylesheet" href="./css/sobre.css">
-</head>
-<body>
-    <header class="header">
-        <h1>Sobre</h1>
-        <p>O projeto Dados do MA tem como objetivo fornecer informações atualizadas sobre indicadores sociais no Maranhão, como renda, escolaridade, taxa de homicídios, saneamento básico e população. Nossa missão é empoderar cidadãos, gestores públicos e organizações sociais com dados precisos para a tomada de decisões mais conscientes.</p>
-    </header>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Desafio 4- Trilhas inova Maranhão </title>
+  
+  <!-- Fontes do Google Fonts, Montserrat e Poppins-->
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+   
+     <!-- Faz a ligação do HTML com o style.css-->
+       <link rel="stylesheet" href="./css/sobre.css">
+           </head>
+              <body>
+  
+  <!-- Cabeçalho com barra de navegação -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="./assets/logo-da-plataforma.png" alt="Logo do Projeto">
+        DadosdoMA
+      </div>
+
+      <!-- Ícone do menu hambúrguer -->
+      <!--! pra que serve? O menu hamburguer é aqueles três tracinhos adicionados no topo da página, servem para ajudar a organizar os nomes que ficam no navbar, ou seja, deixa visualmente mais bonito em telas menores, como celular por exemplo-->
+      <div class="hamburguer" id="hamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- Menu de navegação clássico -->
+      <div class="menu" id="menu">
+        <a href="#home">Home</a>
+        <a href="#sobre"  class="ativo">Sobre</a>
+        <a href="#indicadores">Indicadores</a>
+        <a href="#contato">Contato</a>
+        <a href="#explorar" class="botao-vermelho">Acessar o dashboard</a>
+      </div>
+    </nav>
+  </header>
+  <!-- Conteúdo principal dividido -->
+  <main>
+    <section class="container">
+      <article class="lado-esquerdo">
+        <div class="intro">
+          <h1>POR QUE CRIAMOS A PLATAFORMA?</h1>
+          <p>Com base em dados públicos, facilitamos o acesso à informação para ONGs, gestores e cidadãos que desejam construir políticas e ações sociais mais eficazes</p>
+          <p>Utilizamos APIs públicas confiáveis para garantir dados atualizados e transparentes.</p>
+        </div>
+      </article>
+
+      <aside class="lado-direito">
+        <div class="image">
+          <img src="./assets/image.png" alt="Pessoas">
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- código para abrir o menu, nos dispositivos moveis de tela menor, como o celular, tablet e etc. -->
+  <script>
+    const hamburguer = document.getElementById('hamburguer');
+    const menu = document.getElementById('menu');
+
+    hamburguer.addEventListener('click', () => {
+      menu.classList.toggle('ativo');
+    });
+  </script>
+
+  <script src="js/script.js"></script>  
+  <script>
+    const btnDashboard = document.getElementById('btn-dashboard');
+    btnDashboard.addEventListener('click', () => {
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+
 </body>
 </html>

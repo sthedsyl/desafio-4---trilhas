@@ -1,44 +1,230 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.header {
-    background-color: #ffffff;
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
-    max-width: 900px;
-    margin: 50px auto;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
 }
 
-.header h1 {
-    color: #041e42;
-    font-size: 48px;
-    margin-bottom: 20px;
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background-color: #E5E5E5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.header p {
-    color: #555;
-    font-size: 20px;
-    line-height: 1.6;
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+  gap: 10px;
 }
 
-/* Responsividade */
+.logo img {
+  height: 100px;
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #0A198F;
+  font-weight: 500;
+}
+
+.menu a.ativo {
+  color: #0A198F;
+  font-weight: 700;
+  position: relative;
+}
+
+.menu a.ativo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 3px;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 2px;
+}
+
+.menu .botao-vermelho {
+  background-color: #D50000;
+  color: white;
+  padding: 6px 12px;
+  margin-top: -6px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.menu .botao-vermelho:hover {
+  background-color: #D72638;
+}
+
+/* CONTAINER PRINCIPAL - MODIFICADO */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 80px); /* Ajuste para altura total menos navbar */
+  margin-top: 80px;
+}
+
+/* LADO ESQUERDO - AZUL */
+.lado-esquerdo {
+  flex: 1;
+  background-color: #0A198F; /* Cor azul */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px; /* Aumentei o padding vertical */
+  color: white; /* Texto branco para contraste */
+}
+
+.intro {
+  max-width: 600px; /* Limita a largura do conteúdo */
+}
+
+.intro h1 {
+  font-size: 36px; /* Aumentei o tamanho da fonte */
+  margin-bottom: 30px; /* Aumentei o espaçamento */
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.intro p {
+  font-size: 18px;
+  margin-bottom: 20px; /* Aumentei o espaçamento */
+  max-width: 100%;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.9); /* Branco levemente transparente */
+  line-height: 1.6;
+}
+
+/* LADO DIREITO - BRANCO */
+.lado-direito {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.image img {
+width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem cobrir todo o espaço */
+  object-position: center; /* Centraliza a imagem */
+}
+
+/* Restante do seu CSS permanece igual */
+
+/* HAMBÚRGUER */
+.hamburguer {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburguer span {
+  height: 3px;
+  width: 25px;
+  background-color: #0A198F;
+  border-radius: 2px;
+}
+
+/* RESPONSIVO PARA CELULAR */
 @media (max-width: 768px) {
-    .header {
-        padding: 20px;
-        margin: 20px auto;
-    }
+  .hamburguer {
+    display: flex;
+  }
 
-    .header h1 {
-        font-size: 36px;
-    }
+  .menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background-color: white;
+    width: auto;
+    padding: 20px;
+    gap: 10px;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
 
-    .header p {
-        font-size: 18px;
-    }
+  .menu.ativo {
+    display: flex;
+  }
+
+  .menu a {
+    text-align: right;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .menu .botao-vermelho {
+    width: fit-content;
+    padding: 6px 12px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .lado-esquerdo,
+  .lado-direito {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .lado-direito {
+    height: 300px; /* Define uma altura fixa para mobile */
+  }
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .intro p {
+    font-size: 16px;
+  }
 }
