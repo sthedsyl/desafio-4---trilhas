@@ -53,7 +53,7 @@ body, html {
 }
 
 .menu a.ativo {
-  color: #0A198F; /* cor do link ativo */
+  color: #0A198F;
   font-weight: 700;
   position: relative;
 }
@@ -62,7 +62,7 @@ body, html {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px; /* dá uma espaçada pra ficar de boa */
+  bottom: -5px;
   height: 3px;
   width: 100%;
   background-color: #000000;
@@ -72,7 +72,7 @@ body, html {
 .menu .botao-vermelho {
   background-color: #D50000;
   color: white;
-  padding: 6px 12px; /* padding mais compacto */
+  padding: 6px 12px;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 500;
@@ -80,11 +80,11 @@ body, html {
   display: flex;
   align-items: center;
   height: 100%;
-  transition: background-color 0.3s ease; /* animação suave */
+  transition: background-color 0.3s ease;
 }
 
 .menu .botao-vermelho:hover {
-  background-color: #a80000; /* cor mais escura ao passar o mouse */
+  background-color: #a80000;
 }
 
 /* CONTAINER PRINCIPAL */
@@ -148,24 +148,25 @@ body, html {
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;  /*essa parte faz a imagem não aparecer na parte que extrapolou*/
+  overflow: visible;
 }
 
 .imagem-mapa {
-  position: relative;
-  max-width: 100%;
+  position: absolute;
+  left: -200px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 700px;
   height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .imagem-mapa img {
-  max-width: none;  /* tira o limite do tamanho */
-  width: 700px;     /* define um tamanho fixo manual */
+  position: absolute;
+  width: 700px;
   height: auto;
-  position: relative;
-  left: -30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* HAMBÚRGUER */
@@ -192,12 +193,12 @@ body, html {
   .menu {
     display: none;
     flex-direction: column;
-    align-items: flex-end; /* alinha tudo à direita */
+    align-items: flex-end;
     position: absolute;
     top: 80px;
-    right: 20px; /* encosta no lado direito */
+    right: 20px;
     background-color: white;
-    width: auto; /* deixa a caixa menor, do tamanho dos links */
+    width: auto;
     padding: 20px;
     gap: 10px;
     z-index: 999;
@@ -212,7 +213,7 @@ body, html {
   .menu a {
     text-align: right;
     font-size: 16px;
-    white-space: nowrap; /* impede quebra de linha */
+    white-space: nowrap;
   }
 
   .menu .botao-vermelho {
@@ -233,6 +234,15 @@ body, html {
     padding: 20px;
   }
 
+  .lado-direito {
+    background-color: #0A198F;
+    min-height: 500px; /* altura mínima maior pra garantir que o fundo cubra tudo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .intro h1 {
     font-size: 24px;
   }
@@ -241,8 +251,21 @@ body, html {
     font-size: 16px;
   }
 
-  .imagem-mapa img {
-    max-width: 100%;
+  .imagem-mapa {
+    position: relative;
     left: 0;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+  }
+
+  .imagem-mapa img {
+    position: relative;
+    width: 900%;
+    max-width: 600px;
+    height: auto;
+    margin-top: 150px;
   }
 }
