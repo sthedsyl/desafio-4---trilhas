@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Desafio 4- Trilhas inova Maranhão </title>
+  <title>Desafio 4</title>
   
   <!-- Fontes do Google Fonts, Montserrat e Poppins-->
    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
    
      <!-- Faz a ligação do HTML com o style.css-->
-       <link rel="stylesheet" href="CSS/style.css">
+       <link rel="stylesheet" href="css/style.css">
            </head>
               <body>
   
@@ -17,12 +17,11 @@
   <header>
     <nav class="navbar">
       <div class="logo">
-        <img src="img/mery/logo.svg" alt="Logo do Projeto">
-        DadosdoMA
+        <img src="img/mery/logo.svg" alt="Logo do projeto">
+        DadosDoMA
       </div>
 
       <!-- Ícone do menu hambúrguer -->
-      <!--! pra que serve? O menu hamburguer é aqueles três tracinhos adicionados no topo da página, servem para ajudar a organizar os nomes que ficam no navbar, ou seja, deixa visualmente mais bonito em telas menores, como celular por exemplo-->
       <div class="hamburguer" id="hamburguer">
         <span></span>
         <span></span>
@@ -34,7 +33,8 @@
         <a href="#sobre">Sobre</a>
         <a href="#indicadores">Indicadores</a>
         <a href="#contato">Contato</a>
-        <a href="#explorar" class="botao-vermelho">Acessar o dashboard</a>
+        <a href="#explorar" class="botao-vermelho"
+        >Acesse o Dashboard</a>
       </div>
     </nav>
   </header>
@@ -44,28 +44,28 @@
       <article class="lado-esquerdo">
         <div class="intro">
           <div class="imagem-extra">
-            <img src="img/Mery/lupa.svg" alt="Ícone de lupa">
+            <img src="img/mery/lupa.svg" alt="Ícone de lupa">
             </div>
-          <h1>INDICADORES SOCIAIS DO MARANHÃO</h1>
+          <h1>Indicadores Sociais do Maranhão</h1>
           <p>Visualize, compare e transforme realidades com dados sociais atualizados sobre os municípios maranhenses.</p>
           <p class="menor">Conheça dados atualizados sobre a renda, escolaridade, taxa de homicídios, saneamento básico, população e densidade demográfica nas cidades do Maranhão.</p>
           
           <!-- Botão com ícone de lupa -->
           <button class="botao-lupa" id="btn-dashboard">
-            Acessar o dashboard
+            Acesse o Dashboard
           </button>
         </div>
       </article>
 
       <aside class="lado-direito">
         <div class="imagem-mapa">
-          <img src="img/mery/mapa-brasil3D.svg" alt="Mapa do Maranhão">
+          <img src="img/mery/mapa-brasil3d.svg" alt="Mapa do Maranhão">
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- código para abrir o menu, nos dispositivos moveis de tela menor, como o celular, tablet e etc. -->
+  <!-- Código para dispositivos móveis  -->
   <script>
     const hamburguer = document.getElementById('hamburguer');
     const menu = document.getElementById('menu');
