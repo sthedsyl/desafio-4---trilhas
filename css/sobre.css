@@ -37,7 +37,7 @@ body, html {
 }
 
 .logo img {
-  height: 100px;
+  height: 80px;
   width: auto;
 }
 
@@ -149,7 +149,6 @@ width: 100%;
   object-position: center; /* Centraliza a imagem */
 }
 
-/* Restante do seu CSS permanece igual */
 
 /* HAMBÚRGUER */
 .hamburguer {
