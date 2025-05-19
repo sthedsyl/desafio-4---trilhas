@@ -1,0 +1,140 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100055",
+        "name": "Açailândia",
+        "region": "Oeste",
+        "populacao": 112445,
+        "renda_per_capita": 712.34,
+        "escolaridade_media": 7.2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [0, 10], [10, 10], [10, 0], [0, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100105",
+        "name": "Afonso Cunha",
+        "region": "Leste",
+        "populacao": 6042,
+        "renda_per_capita": 341.27,
+        "escolaridade_media": 4.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[15, 0], [15, 10], [25, 10], [25, 0], [15, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100154",
+        "name": "Água Doce do Maranhão",
+        "region": "Norte",
+        "populacao": 12352,
+        "renda_per_capita": 325.89,
+        "escolaridade_media": 5.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[30, 0], [30, 10], [40, 10], [40, 0], [30, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100204",
+        "name": "Alcântara",
+        "region": "Norte",
+        "populacao": 21891,
+        "renda_per_capita": 398.45,
+        "escolaridade_media": 6.3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 15], [0, 25], [10, 25], [10, 15], [0, 15]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100303",
+        "name": "Aldeias Altas",
+        "region": "Leste",
+        "populacao": 25127,
+        "renda_per_capita": 387.12,
+        "escolaridade_media": 5.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[15, 15], [15, 25], [25, 25], [25, 15], [15, 15]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100402",
+        "name": "São Luís",
+        "region": "Norte",
+        "populacao": 1108975,
+        "renda_per_capita": 1102.67,
+        "escolaridade_media": 9.2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[30, 15], [30, 25], [40, 25], [40, 15], [30, 15]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100501",
+        "name": "Imperatriz",
+        "region": "Oeste",
+        "populacao": 258682,
+        "renda_per_capita": 827.89,
+        "escolaridade_media": 8.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 30], [0, 40], [10, 40], [10, 30], [0, 30]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100550",
+        "name": "Caxias",
+        "region": "Leste",
+        "populacao": 164224,
+        "renda_per_capita": 485.76,
+        "escolaridade_media": 6.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[15, 30], [15, 40], [25, 40], [25, 30], [15, 30]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2100600",
+        "name": "Balsas",
+        "region": "Sul",
+        "populacao": 94779,
+        "renda_per_capita": 678.23,
+        "escolaridade_media": 7.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[30, 30], [30, 40], [40, 40], [40, 30], [30, 30]]]
+      }
+    }
+  ]
+}

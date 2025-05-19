@@ -1,0 +1,281 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "São Luís",
+        "id": "2111300",
+        "region": "Norte",
+        "populacao": 1115932,
+        "renda_per_capita": 1250.32,
+        "escolaridade_media": 9.7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-44.4, -2.5],
+            [-44.2, -2.5],
+            [-44.2, -2.3],
+            [-44.4, -2.3],
+            [-44.4, -2.5]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Imperatriz",
+        "id": "2105302",
+        "region": "Oeste",
+        "populacao": 259337,
+        "renda_per_capita": 845.76,
+        "escolaridade_media": 8.4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-47.5, -5.6],
+            [-47.3, -5.6],
+            [-47.3, -5.4],
+            [-47.5, -5.4],
+            [-47.5, -5.6]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Caxias",
+        "id": "2103000",
+        "region": "Leste",
+        "populacao": 164880,
+        "renda_per_capita": 512.45,
+        "escolaridade_media": 7.2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-43.5, -4.9],
+            [-43.3, -4.9],
+            [-43.3, -4.7],
+            [-43.5, -4.7],
+            [-43.5, -4.9]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Timon",
+        "id": "2112209",
+        "region": "Leste",
+        "populacao": 169107,
+        "renda_per_capita": 487.65,
+        "escolaridade_media": 6.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-42.9, -5.2],
+            [-42.7, -5.2],
+            [-42.7, -5.0],
+            [-42.9, -5.0],
+            [-42.9, -5.2]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Codó",
+        "id": "2103307",
+        "region": "Leste",
+        "populacao": 123116,
+        "renda_per_capita": 392.87,
+        "escolaridade_media": 6.3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-44.0, -4.5],
+            [-43.8, -4.5],
+            [-43.8, -4.3],
+            [-44.0, -4.3],
+            [-44.0, -4.5]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Açailândia",
+        "id": "2100055",
+        "region": "Oeste",
+        "populacao": 112445,
+        "renda_per_capita": 712.34,
+        "escolaridade_media": 7.2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-47.6, -4.9],
+            [-47.4, -4.9],
+            [-47.4, -4.7],
+            [-47.6, -4.7],
+            [-47.6, -4.9]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Balsas",
+        "id": "2101400",
+        "region": "Sul",
+        "populacao": 94779,
+        "renda_per_capita": 678.23,
+        "escolaridade_media": 7.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-46.1, -7.6],
+            [-45.9, -7.6],
+            [-45.9, -7.4],
+            [-46.1, -7.4],
+            [-46.1, -7.6]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bacabal",
+        "id": "2101202",
+        "region": "Centro",
+        "populacao": 104633,
+        "renda_per_capita": 432.56,
+        "escolaridade_media": 6.7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-44.8, -4.2],
+            [-44.6, -4.2],
+            [-44.6, -4.0],
+            [-44.8, -4.0],
+            [-44.8, -4.2]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Santa Inês",
+        "id": "2111201",
+        "region": "Oeste",
+        "populacao": 89489,
+        "renda_per_capita": 467.34,
+        "escolaridade_media": 7.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-45.4, -3.7],
+            [-45.2, -3.7],
+            [-45.2, -3.5],
+            [-45.4, -3.5],
+            [-45.4, -3.7]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Chapadinha",
+        "id": "2103109",
+        "region": "Leste",
+        "populacao": 79545,
+        "renda_per_capita": 365.78,
+        "escolaridade_media": 5.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-43.4, -3.8],
+            [-43.2, -3.8],
+            [-43.2, -3.6],
+            [-43.4, -3.6],
+            [-43.4, -3.8]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barra do Corda",
+        "id": "2101608",
+        "region": "Centro",
+        "populacao": 87794,
+        "renda_per_capita": 347.23,
+        "escolaridade_media": 5.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-45.3, -5.6],
+            [-45.1, -5.6],
+            [-45.1, -5.4],
+            [-45.3, -5.4],
+            [-45.3, -5.6]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pinheiro",
+        "id": "2108603",
+        "region": "Norte",
+        "populacao": 82990,
+        "renda_per_capita": 378.95,
+        "escolaridade_media": 6.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-45.1, -2.6],
+            [-44.9, -2.6],
+            [-44.9, -2.4],
+            [-45.1, -2.4],
+            [-45.1, -2.6]
+          ]
+        ]
+      }
+    }
+  ]
+}
