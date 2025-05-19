@@ -59,14 +59,18 @@ document.addEventListener('DOMContentLoaded', function() {
         { cidade: 'Açailândia', valor: 111757 },
         { cidade: 'Bacabal', valor: 104633 },
         { cidade: 'Balsas', valor: 95929 }
-    ];    let graficoBarras;
+    ];    
+    
+    let graficoBarras;
     
     function desenharGraficoBarras() {
-        console.log("Desenhando gráfico de barras com Chart.js");        if (graficoBarras) {
+        console.log("Desenhando gráfico de barras com Chart.js");        
+        if (graficoBarras) {
             graficoBarras.destroy();
         }
         
-        const ctx = document.getElementById('indicadores-chart').getContext('2d');        const labels = dadosGrafico.map(d => d.cidade);
+        const ctx = document.getElementById('indicadores-chart').getContext('2d');        
+        const labels = dadosGrafico.map(d => d.cidade);
         const valores = dadosGrafico.map(d => d.valor);
         graficoBarras = new Chart(ctx, {
             type: 'bar',
