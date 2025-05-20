@@ -83,12 +83,13 @@ const CONFIG_INDICADORES = {
     },
     [INDICADORES.POPULACAO]: {
         nome: 'População Total',
-        agregado: '6579', // Estimativas populacionais
-        variavel: '9324', // População residente estimada
-        periodo: 'ultimo',
+        agregado: '9605', // Novo agregado conforme a API
+        variavel: '93', // Nova variável conforme a API
+        periodo: '2022', // Período específico
         localidade: '6',
         unidade: 'habitantes',
-        estadoFallback: false
+        estadoFallback: false,
+        classificacao: '86[95251]' // Classificação para o total da população
     }
 };
 
@@ -549,7 +550,7 @@ async function buscarDadosFrequenciaEscolar() {
             return gerarDadosFrequenciaEscolarSimulados();
         }
 
-        // Processamento dos dados por faixa etária
+        // Processamento dos dados por faixa etária para a frequência escolar
         const dadosPorGrupoIdade = [];
 
         try {
@@ -851,6 +852,194 @@ async function buscarDadosFrequenciaEscolarPorMunicipio(municipioId) {
         return buscarDadosFrequenciaEscolar(); // Fallback para dados estaduais
     }
 }
+
+// Função específica para buscar dados de população pela nova API do IBGE
+async function buscarDadosPopulacao(municipioId = null) {
+    console.log(`Buscando dados de população${municipioId ? ' para município específico' : ' para todos os municípios do Maranhão'}`);
+    showLoadingOverlay();
+
+    try {
+        let url;
+        if (municipioId) {
+            // Busca para um município específico - Certifica-se que não inclui N3[21] no URL
+            url = `https://servicodados.ibge.gov.br/api/v3/agregados/9605/periodos/2022/variaveis/93?localidades=N6[${municipioId}]&classificacao=86[95251]`;
+            console.log(`Buscando dados de população para o município ID: ${municipioId}`);
+        } else {
+            // Busca para todos os municípios do Maranhão
+            url = 'https://servicodados.ibge.gov.br/api/v3/agregados/9605/periodos/2022/variaveis/93?localidades=N6[N3[21]]&classificacao=86[95251]';
+        }
+
+        console.log('URL da API de população:', url);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.error(`Erro na API de população: ${response.status} - ${response.statusText}`);
+
+            // Se é para um município específico, tentamos obter apenas o nome e gerar dados simulados
+            if (municipioId) {
+                try {
+                    const municipioInfo = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios/${municipioId}`);
+                    if (municipioInfo.ok) {
+                        const municipioData = await municipioInfo.json();
+                        const nomeMunicipio = municipioData.nome;
+
+                        hideLoadingOverlay();
+                        return [{
+                            cidade: nomeMunicipio,
+                            valor: 50000 + Math.random() * 50000, // População simulada
+                            unidade: 'habitantes',
+                            isSimulado: true
+                        }];
+                    }
+                } catch (fallbackError) {
+                    console.error('Erro no fallback para o nome do município:', fallbackError);
+                }
+            }
+
+            throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log('Dados de população recebidos:', data);
+
+        // Verificar se temos dados válidos
+        if (!data || !Array.isArray(data) || data.length === 0 || !data[0]?.resultados || data[0].resultados.length === 0) {
+            console.log('Sem dados de população. Usando dados simulados.');
+            hideLoadingOverlay();
+            return gerarDadosSimulados(INDICADORES.POPULACAO);
+        }
+
+        const resultados = data[0].resultados[0];
+        if (!resultados.series || !Array.isArray(resultados.series)) {
+            console.log('Estrutura de séries não encontrada nos dados de população:', resultados);
+            hideLoadingOverlay();
+            return gerarDadosSimulados(INDICADORES.POPULACAO);
+        }
+
+        const series = resultados.series;
+        const dadosTratados = [];
+
+        // Se for um município específico
+        if (municipioId) {
+            // Procuramos o município nos dados
+            let encontrado = false;
+
+            for (const serie of series) {
+                // Verificamos se o ID do município corresponde ao que estamos procurando
+                if (serie.localidade && serie.localidade.id === municipioId) {
+                    encontrado = true;
+
+                    // Pegamos o valor da série para 2022
+                    const periodoChave = Object.keys(serie.serie)[0]; // Geralmente '2022'
+                    const valor = parseInt(serie.serie[periodoChave], 10) || 0;
+
+                    // Usamos o nome do município que vem na resposta da API
+                    const nomeMunicipio = serie.localidade.nome.replace(/ - MA$/, '');
+
+                    dadosTratados.push({
+                        cidade: nomeMunicipio,
+                        valor: valor,
+                        unidade: 'habitantes'
+                    });
+                    break;
+                }
+            }
+
+            // Se não encontramos na iteração acima, vamos tentar checando se o formato da resposta é diferente
+            if (!encontrado && series.length > 0) {
+                console.log('Tentando formato alternativo para dados de município...');
+
+                // Verifica se o primeiro item da série tem os dados do município que buscamos
+                const firstSerie = series[0];
+                if (firstSerie && firstSerie.localidade) {
+                    // Verifica se há correspondência parcial (o ID pode estar em formato diferente)
+                    const localidadeId = firstSerie.localidade.id;
+                    if (localidadeId && localidadeId.includes(municipioId)) {
+                        const periodoChave = Object.keys(firstSerie.serie)[0];
+                        const valor = parseInt(firstSerie.serie[periodoChave], 10) || 0;
+                        const nomeMunicipio = firstSerie.localidade.nome.replace(/ - MA$/, '');
+
+                        dadosTratados.push({
+                            cidade: nomeMunicipio,
+                            valor: valor,
+                            unidade: 'habitantes'
+                        });
+
+                        encontrado = true;
+                    }
+                }
+            }
+
+            // Se não encontrou o município específico nos dados
+            if (!encontrado) {
+                console.log('Dados específicos para o município não encontrados, tentando novamente...');
+
+                // Tenta uma abordagem alternativa - buscando diretamente
+                try {
+                    const directResponse = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios/${municipioId}`);
+                    if (directResponse.ok) {
+                        const municipioData = await directResponse.json();
+                        const nomeMunicipio = municipioData.nome;
+
+                        // Usa um valor simulado mas um nome real
+                        dadosTratados.push({
+                            cidade: nomeMunicipio,
+                            valor: 50000 + Math.random() * 50000, // População simulada entre 50 mil e 100 mil
+                            unidade: 'habitantes',
+                            isSimulado: true
+                        });
+
+                        hideLoadingOverlay();
+                        return dadosTratados;
+                    }
+                } catch (directError) {
+                    console.error('Erro na busca direta do município:', directError);
+                }
+
+                hideLoadingOverlay();
+                return gerarDadosSimulados(INDICADORES.POPULACAO);
+            }
+        } else {
+            // Para todos os municípios, ordenamos por população decrescente e pegamos os 10 maiores
+            const municipiosData = [];
+
+            for (const serie of series) {
+                try {
+                    const municipioId = serie.localidade.id;
+                    // Pegamos o nome do município da resposta da API e removemos " - MA" do final
+                    const nomeMunicipio = serie.localidade.nome.replace(/ - MA$/, '');
+
+                    // Pegamos o valor da série para 2022
+                    const periodoChave = Object.keys(serie.serie)[0]; // Geralmente '2022'
+                    const valor = parseInt(serie.serie[periodoChave], 10) || 0;
+
+                    municipiosData.push({
+                        id: municipioId,
+                        cidade: nomeMunicipio,
+                        valor: valor,
+                        unidade: 'habitantes'
+                    });
+                } catch (err) {
+                    console.error('Erro ao processar município:', err, serie);
+                }
+            }
+
+            // Ordenar por população decrescente e pegar os 10 maiores
+            municipiosData.sort((a, b) => b.valor - a.valor);
+            const top10 = municipiosData.slice(0, 10);
+
+            dadosTratados.push(...top10);
+        }
+
+        hideLoadingOverlay();
+        return dadosTratados;
+
+    } catch (error) {
+        console.error('Erro ao buscar dados de população:', error);
+        hideLoadingOverlay();
+        return gerarDadosSimulados(INDICADORES.POPULACAO);
+    }
+}
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Dashboard principal iniciado");
     if (typeof window.graficoInicializado === 'undefined') {
@@ -864,6 +1053,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const cidadeSelecionada = this.options[this.selectedIndex].text;
             const cidadeId = this.value;
             console.log("Cidade selecionada:", cidadeSelecionada, cidadeId);
+
+            // Verifica se é uma seleção válida (não é a opção "Selecione uma cidade")
+            if (!cidadeId) {
+                console.log("Nenhuma cidade selecionada");
+                return;
+            }
 
             // Busca dados do indicador selecionado para a cidade selecionada
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -890,10 +1085,34 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     // Demais indicadores usam a busca padrão
                     else {
-                        buscarDadosIndicador(checkbox.id, cidadeId)
-                            .then(dados => {
-                                atualizarGrafico(dados, checkbox.id);
-                            });
+                        console.log(`Buscando dados para indicador ${checkbox.id} e município ${cidadeId}`);
+
+                        // Caso especial para indicador de população
+                        if (checkbox.id === INDICADORES.POPULACAO) {
+                            buscarDadosPopulacao(cidadeId)
+                                .then(dados => {
+                                    console.log('Dados de população recebidos:', dados);
+                                    atualizarGrafico(dados, INDICADORES.POPULACAO);
+                                })
+                                .catch(erro => {
+                                    console.error('Erro ao buscar dados de população:', erro);
+                                    const dadosSimulados = gerarDadosSimulados(INDICADORES.POPULACAO);
+                                    atualizarGrafico(dadosSimulados, INDICADORES.POPULACAO);
+                                });
+                        } else {
+                            // Outros indicadores
+                            buscarDadosIndicador(checkbox.id, cidadeId)
+                                .then(dados => {
+                                    console.log(`Dados recebidos para ${checkbox.id}:`, dados);
+                                    atualizarGrafico(dados, checkbox.id);
+                                })
+                                .catch(erro => {
+                                    console.error(`Erro ao buscar dados para ${checkbox.id}:`, erro);
+                                    // Em caso de erro, tentamos exibir dados simulados
+                                    const dadosSimulados = gerarDadosSimulados(checkbox.id);
+                                    atualizarGrafico(dadosSimulados, checkbox.id);
+                                });
+                        }
                     }
                     break;
                 }
@@ -1181,8 +1400,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // Inicialmente carrega o gráfico de população
-    desenharGraficoBarras();
+    // Inicialmente carrega o gráfico de população com dados da API
+    buscarDadosPopulacao().then(dados => {
+        if (dados && dados.length > 0) {
+            desenharGraficoBarras(dados, 'População dos Principais Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+        } else {
+            desenharGraficoBarras(dadosGrafico, 'População dos Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+        }
+    });
 
     window.addEventListener('resize', function () {
         // Redimensiona o gráfico atual
@@ -1199,8 +1424,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 cb.checked = false;
             });
 
-            // Mostra o gráfico com dados populacionais
-            desenharGraficoBarras(dadosGrafico, 'População dos Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+            // Verifica se um município está selecionado
+            const cidadeSelecionada = document.getElementById('Cidade').value;
+
+            if (cidadeSelecionada && cidadeSelecionada !== '') {
+                // Busca dados de população para o município selecionado
+                buscarDadosPopulacao(cidadeSelecionada).then(dados => {
+                    if (dados && dados.length > 0) {
+                        desenharGraficoBarras(dados, 'População do Município', 'População', INDICADORES.POPULACAO);
+                    } else {
+                        exibirNotificacao('Não foi possível obter dados de população para este município.');
+                        desenharGraficoBarras(dadosGrafico, 'População dos Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+                    }
+                });
+            } else {
+                // Busca dados de população para os principais municípios
+                buscarDadosPopulacao().then(dados => {
+                    if (dados && dados.length > 0) {
+                        desenharGraficoBarras(dados, 'População dos Principais Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+                    } else {
+                        exibirNotificacao('Usando dados populacionais pré-carregados.');
+                        desenharGraficoBarras(dadosGrafico, 'População dos Municípios do Maranhão', 'População', INDICADORES.POPULACAO);
+                    }
+                });
+            }
         }
     });
 
@@ -1251,34 +1498,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Adiciona evento para o botão de limpar filtros
-document.getElementById('limparFiltros').addEventListener('click', function () {
-    // Desmarca todos os checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        cb.checked = false;
+    document.getElementById('limparFiltros').addEventListener('click', function () {
+        // Desmarca todos os checkboxes
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
+
+        // Limpa o gráfico e restaura o estado inicial
+        if (graficoBarras) {
+            graficoBarras.destroy();
+            graficoBarras = null;
+        }
+
+        // Esconde a legenda de intensidade
+        const legendaIndicador = document.getElementById('legenda-indicador');
+        if (legendaIndicador) {
+            legendaIndicador.classList.add('hidden');
+        }
+
+        // Mostra uma mensagem no gráfico vazio
+        const ctx = document.getElementById('indicadores-chart').getContext('2d');
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.font = "16px 'Poppins', sans-serif";
+        ctx.fillStyle = "#4B5563";
+        ctx.textAlign = "center";
+        ctx.fillText("Selecione um indicador para visualizar o gráfico", ctx.canvas.width / 2, ctx.canvas.height / 2);
+
+        exibirNotificacao('Filtros removidos. Selecione um indicador para visualizar dados.');
     });
-    
-    // Limpa o gráfico e restaura o estado inicial
-    if (graficoBarras) {
-        graficoBarras.destroy();
-        graficoBarras = null;
-    }
-    
-    // Esconde a legenda de intensidade
-    const legendaIndicador = document.getElementById('legenda-indicador');
-    if (legendaIndicador) {
-        legendaIndicador.classList.add('hidden');
-    }
-    
-    // Mostra uma mensagem no gráfico vazio
-    const ctx = document.getElementById('indicadores-chart').getContext('2d');
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.font = "16px 'Poppins', sans-serif";
-    ctx.fillStyle = "#4B5563";
-    ctx.textAlign = "center";
-    ctx.fillText("Selecione um indicador para visualizar o gráfico", ctx.canvas.width / 2, ctx.canvas.height / 2);
-    
-    exibirNotificacao('Filtros removidos. Selecione um indicador para visualizar dados.');
-});
 
     // Marca o checkbox de população por padrão
     document.getElementById('população').checked = true;
