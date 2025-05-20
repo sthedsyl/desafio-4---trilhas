@@ -44,12 +44,15 @@ body, html {
 .menu {
   display: flex;
   gap: 20px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .menu a {
   text-decoration: none;
   color: #0A198F;
   font-weight: 500;
+  font-size: 18px;
 }
 
 .menu a.ativo {
@@ -81,6 +84,8 @@ body, html {
   align-items: center;
   height: 100%;
   transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
 .menu .botao-vermelho:hover {
@@ -90,9 +95,15 @@ body, html {
 /* CONTAINER PRINCIPAL */
 .container {
   display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100vh;
   margin-top: 80px;
+  max-width: 900px; /* limite para centralizar melhor */
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
 /* LADO ESQUERDO - BRANCO */
@@ -148,26 +159,40 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: visible;
+  position: relative;
 }
 
+/* Imagem do mapa */
 .imagem-mapa {
   position: absolute;
-  left: -200px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 530px;
+  right: 400px;
   width: 700px;
-  height: auto;
+  z-index: 10;
 }
 
 .imagem-mapa img {
-  position: absolute;
-  width: 700px;
+  width: 100%;
   height: auto;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Imagem extra (ex: lupa) */
+.imagem-extra {
+  position: absolute;
+  bottom: 540px;
+  right: 630px;
+  width: 200px;
+  z-index: 10;
+}
+
+.imagem-extra img {
+  width: 100%;
+  height: auto;
 }
 
 /* HAMBÚRGUER */
@@ -183,68 +208,6 @@ body, html {
   width: 25px;
   background-color: #0A198F;
   border-radius: 2px;
-}
-
-/* ESTILOS GERAIS (DESKTOP) */
-.hamburguer {
-  display: none;
-}
-
-.menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-}
-
-.menu a {
-  font-size: 18px;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-}
-
-.lado-esquerdo,
-.lado-direito {
-  width: 50%;
-  padding: 40px;
-}
-
-.imagem-extra {
-  position: absolute;
-  bottom: 540px; /* subir*/
-  right: 630px; /*ir mais pro lado*/
-  width: 200px; /* aumentar tamanho*/
-  z-index: 10;
-}
-
-.imagem-extra img {
-  width: 100%;
-  height: auto;
-}
-
-.lado-direito {
-  background-color: #0A198F;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible; /* deixa a imagem escapar */
-}
-
-.imagem-mapa {
-  position: absolute;
-  bottom: 530px; /* subir lupa*/
-  right: 400px; /*ir mais pro lado*/
-  width: 700px; /* aumentar tamanho*/
-  z-index: 10;
-}
-
-.imagem-mapa img {
-  width: 100%;
-  height: auto;
 }
 
 /* RESPONSIVO PARA CELULAR */
@@ -289,6 +252,7 @@ body, html {
   .container {
     flex-direction: column;
     height: auto;
+    padding: 20px;
   }
 
   .lado-esquerdo,
@@ -309,26 +273,27 @@ body, html {
   .intro p {
     font-size: 16px;
   }
-  
-  
+
   .logo img {
-  height: 30px;
-  width: auto;
-}
+    height: 30px;
+    width: auto;
+  }
 
+  .imagem-mapa {
+    width: 100%;
+    max-width: 700px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: auto;
+    top: 50%;
+  }
 
- .imagem-mapa {
-  position: absolute;
-  bottom: 530px; /* subir*/
-  left: -32%;
-  right: 200px; /*ir mais pro lado*/
-  width: 700px; /* aumentar tamanho*/
-  z-index: 10;
-}
+  .imagem-mapa img {
+    width: 100%;
+    height: auto;
+  }
 
-.imagem-mapa img {
-  width: 100%;
-  height: auto;
- }
- 
+  .imagem-extra {
+    display: none; /* esconder no mobile se quiser */
+  }
 }

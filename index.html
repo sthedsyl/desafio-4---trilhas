@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Desafio 4</title>
   
-  <!-- Fontes do Google Fonts, Montserrat e Poppins-->
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-   
-     <!-- Faz a ligação do HTML com o style.css-->
-       <link rel="stylesheet" href="css/style.css">
-           </head>
-              <body>
+  <!-- Fontes do Google Fonts: Montserrat e Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
   
+  <!-- CSS Externo -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
   <!-- Cabeçalho com barra de navegação -->
   <header>
     <nav class="navbar">
       <div class="logo">
-        <img src="img/mery/logo.svg" alt="Logo do projeto">
-        DadosDoMA
+        <img src="img/logo.svg" alt="Logo do projeto">
+        <span>DadosDoMA</span>
       </div>
 
       <!-- Ícone do menu hambúrguer -->
@@ -27,30 +27,31 @@
         <span></span>
         <span></span>
       </div>
-      <!-- Menu de navegação clássico -->
+
+      <!-- Menu de navegação -->
       <div class="menu" id="menu">
         <a href="#home" class="ativo">Home</a>
         <a href="#sobre">Sobre</a>
         <a href="#indicadores">Indicadores</a>
         <a href="#contato">Contato</a>
-        <a href="#explorar" class="botao-vermelho"
-        >Acesse o Dashboard</a>
+        <a href="#explorar" class="botao-vermelho">Acesse o Dashboard</a>
       </div>
     </nav>
   </header>
-  <!-- Conteúdo principal dividido -->
+
+  <!-- Conteúdo principal -->
   <main>
     <section class="container">
       <article class="lado-esquerdo">
         <div class="intro">
           <div class="imagem-extra">
-            <img src="img/mery/lupa.svg" alt="Ícone de lupa">
-            </div>
+            <img src="img/lupa.svg" alt="Ícone de lupa">
+          </div>
           <h1>Indicadores Sociais do Maranhão</h1>
           <p>Visualize, compare e transforme realidades com dados sociais atualizados sobre os municípios maranhenses.</p>
           <p class="menor">Conheça dados atualizados sobre a renda, escolaridade, taxa de homicídios, saneamento básico, população e densidade demográfica nas cidades do Maranhão.</p>
           
-          <!-- Botão com ícone de lupa -->
+          <!-- Botão de acesso -->
           <button class="botao-lupa" id="btn-dashboard">
             Acesse o Dashboard
           </button>
@@ -59,29 +60,29 @@
 
       <aside class="lado-direito">
         <div class="imagem-mapa">
-          <img src="img/mery/mapa-brasil3d.svg" alt="Mapa do Maranhão">
+          <img src="img/mapa-brasil.svg" alt="Mapa do Maranhão">
         </div>
       </aside>
     </section>
   </main>
 
-  <!-- Código para dispositivos móveis  -->
+  <!-- Scripts -->
   <script>
+    // Menu responsivo
     const hamburguer = document.getElementById('hamburguer');
     const menu = document.getElementById('menu');
 
     hamburguer.addEventListener('click', () => {
       menu.classList.toggle('ativo');
     });
-  </script>
 
-  <script src="js/script.js"></script>  
-  <script>
+    // Redirecionamento para o dashboard
     const btnDashboard = document.getElementById('btn-dashboard');
     btnDashboard.addEventListener('click', () => {
       window.location.href = 'dashboard.html';
     });
   </script>
 
+  <script src="js/script.js"></script>
 </body>
 </html>
