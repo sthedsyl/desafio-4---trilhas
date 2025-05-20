@@ -60,12 +60,23 @@
                     <label for="população" class="ml-1 md:ml-2 text-sm md:text-lg cursor-pointer">População Total</label>
                 </div>
             </div>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <button id="limparFiltros" class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded border border-gray-300 transition-colors flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Limpar Filtros
+                </button>
+            </div>
         </section>
-          <section class="flex-1 flex flex-col gap-4 border border-gray-300 rounded-md p-4 bg-white shadow-sm">            <h2 class="font-semibold text-xl sm:text-2xl flex items-center">
+          <section class="flex-1 flex flex-col gap-4 border border-gray-300 rounded-md p-4 bg-white shadow-sm">            
+            <h2 class="font-semibold text-xl sm:text-2xl flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
-                Indicadores do Maranhão            </h2>            <div id="chart-container" class="w-full h-80 md:h-96 relative border-2 border-blue-100 rounded-lg overflow-hidden shadow-inner bg-gradient-to-br from-blue-50 to-indigo-50">
+                Indicadores do Maranhão            
+            </h2>            
+            <div id="chart-container" class="w-full h-80 md:h-96 relative border-2 border-blue-100 rounded-lg overflow-hidden shadow-inner bg-gradient-to-br from-blue-50 to-indigo-50">
                 <canvas id="indicadores-chart" width="100%" height="100%"></canvas>
                 <div id="chart-overlay" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 hidden">
                     <div class="text-center">
@@ -73,7 +84,8 @@
                         <p class="text-blue-600">Carregando dados...</p>
                     </div>
                 </div>
-            </div>            <div class="text-center text-sm text-gray-600 mt-2">
+            </div>            
+            <div class="text-center text-sm text-gray-600 mt-2">
                 <p class="mb-1">Selecione os indicadores para visualizar o gráfico</p>
                 <p class="text-xs text-gray-500 italic">Visualização dos principais municípios do estado</p>
             </div><div class="mt-2 p-2 rounded bg-blue-50 text-xs text-gray-600">

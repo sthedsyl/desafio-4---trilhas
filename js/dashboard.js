@@ -1250,6 +1250,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Adiciona evento para o botão de limpar filtros
+document.getElementById('limparFiltros').addEventListener('click', function () {
+    // Desmarca todos os checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+    });
+    
+    // Limpa o gráfico e restaura o estado inicial
+    if (graficoBarras) {
+        graficoBarras.destroy();
+        graficoBarras = null;
+    }
+    
+    // Esconde a legenda de intensidade
+    const legendaIndicador = document.getElementById('legenda-indicador');
+    if (legendaIndicador) {
+        legendaIndicador.classList.add('hidden');
+    }
+    
+    // Mostra uma mensagem no gráfico vazio
+    const ctx = document.getElementById('indicadores-chart').getContext('2d');
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.font = "16px 'Poppins', sans-serif";
+    ctx.fillStyle = "#4B5563";
+    ctx.textAlign = "center";
+    ctx.fillText("Selecione um indicador para visualizar o gráfico", ctx.canvas.width / 2, ctx.canvas.height / 2);
+    
+    exibirNotificacao('Filtros removidos. Selecione um indicador para visualizar dados.');
+});
+
     // Marca o checkbox de população por padrão
     document.getElementById('população').checked = true;
 
