@@ -252,6 +252,25 @@ body, html {
   .hamburguer {
     display: flex;
   }
+  
+  .imagem-mapa {
+    position: absolute;
+    bottom: 530px;
+    left: -32%;
+    right: 200px;
+    width: 700px;
+    z-index: 10;
+  }
+
+  .imagem-mapa img {
+    width: 100%;
+    height: auto;
+  }
+
+  .lado-direito {
+    min-height: 500px;
+    flex-direction: column;
+  }
 
   .menu {
     display: none;
@@ -291,15 +310,15 @@ body, html {
     height: auto;
   }
 
+  .lado-direito {
+    min-height: 500px;
+    flex-direction: column;
+  }
+  
   .lado-esquerdo,
   .lado-direito {
     width: 100%;
     padding: 20px;
-  }
-
-  .lado-direito {
-    min-height: 500px;
-    flex-direction: column;
   }
 
   .intro h1 {
@@ -314,21 +333,6 @@ body, html {
   .logo img {
   height: 30px;
   width: auto;
-}
+  }
 
-
- .imagem-mapa {
-  position: absolute;
-  bottom: 530px; /* subir*/
-  left: -32%;
-  right: 200px; /*ir mais pro lado*/
-  width: 700px; /* aumentar tamanho*/
-  z-index: 10;
-}
-
-.imagem-mapa img {
-  width: 100%;
-  height: auto;
- }
- 
 }
