@@ -79,4 +79,19 @@ footer {
   text-align: center;
   margin-top: 40px;
 }
+const indicadores = [
+  { nome: "Inflação", valor: "4,5%" },
+  { nome: "PIB", valor: "2,3%" },
+  { nome: "Desemprego", valor: "8,1%" },
+  { nome: "Selic", valor: "10,75%" },
+];
+
+const grid = document.getElementById("indicadores-grid");
+
+indicadores.forEach(indicador => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<h2>${indicador.nome}</h2><p>${indicador.valor}</p>`;
+  grid.appendChild(card);
+});
 
