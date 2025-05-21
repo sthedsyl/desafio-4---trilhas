@@ -35,23 +35,12 @@ if (typeof window.carregarCidadesDefinida === 'undefined') {
 // Definição das constantes para os indicadores sociais
 const INDICADORES = {
     POPULACAO: 'população',
-    RENDA: 'renda',
     ESCOLARIDADE: 'educacao',
-    SANEAMENTO: 'saneamento',
     IDADE: 'idade'
 };
 
 // Dados para cada indicador: agregado, variável e período
 const CONFIG_INDICADORES = {
-    [INDICADORES.RENDA]: {
-        nome: 'Renda média per capita',
-        agregado: '5938', // PIB Municipal 
-        variavel: '9356', // Valor do rendimento nominal médio per capita
-        periodo: 'ultimo', // Último período disponível
-        localidade: '6', // Nível de localidade: município
-        unidade: 'R$',
-        estadoFallback: true // Se não houver dados municipais, usar dados estaduais
-    },
     [INDICADORES.ESCOLARIDADE]: {
         nome: 'Taxa de frequência escolar',
         agregado: '10056', // Taxa de frequência escolar bruta
@@ -71,15 +60,6 @@ const CONFIG_INDICADORES = {
         localidade: '3', // Nível de localidade: UF (Estado)
         unidade: 'pessoas',
         apenasEstado: true // Indicador disponível apenas a nível estadual
-    },
-    [INDICADORES.SANEAMENTO]: {
-        nome: 'Acesso ao saneamento básico',
-        agregado: '1552', // Censo Demográfico 2010 - Domicílios
-        variavel: '1498', // Percentual de domicílios com esgotamento sanitário
-        periodo: 'ultimo',
-        localidade: '6',
-        unidade: '%',
-        estadoFallback: true
     },
     [INDICADORES.POPULACAO]: {
         nome: 'População Total',
@@ -316,14 +296,8 @@ function gerarDadosSimulados(indicador) {
         // Retorna dados simulados para o município selecionado
         let valorBase;
         switch (indicador) {
-            case INDICADORES.RENDA:
-                valorBase = 1200 + Math.random() * 800; // Entre R$ 1.200 e R$ 2.000
-                break;
             case INDICADORES.ESCOLARIDADE:
                 valorBase = 7 + Math.random() * 3; // Entre 7 e 10 anos
-                break;
-            case INDICADORES.SANEAMENTO:
-                valorBase = 40 + Math.random() * 40; // Entre 40% e 80%
                 break;
             default:
                 valorBase = 50000 + Math.random() * 50000; // População entre 50 mil e 100 mil
@@ -341,17 +315,9 @@ function gerarDadosSimulados(indicador) {
     return dadosGrafico.map(d => {
         let valorBase;
         switch (indicador) {
-            case INDICADORES.RENDA:
-                // Cidades maiores tendem a ter rendas maiores
-                valorBase = 1000 + (Math.sqrt(d.valor) / 20);
-                break;
             case INDICADORES.ESCOLARIDADE:
                 // Correlação com tamanho da cidade
                 valorBase = 7 + (Math.log10(d.valor) / 7);
-                break;
-            case INDICADORES.SANEAMENTO:
-                // Correlação com tamanho da cidade
-                valorBase = 40 + (Math.log10(d.valor) / 4);
                 break;
             default:
                 valorBase = d.valor;
@@ -1134,15 +1100,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <label for="idade" class="ml-1 md:ml-2 text-sm md:text-lg cursor-pointer">População por Idade</label>
         `;
         containerIndicadores.appendChild(divIdade);
-
-        // Checkbox para saneamento básico
-        const divSaneamento = document.createElement('div');
-        divSaneamento.className = 'flex items-center';
-        divSaneamento.innerHTML = `
-            <input type="checkbox" id="saneamento" class="mr-2 md:mr-3 h-4 md:h-5 w-4 md:w-5 cursor-pointer"> 
-            <label for="saneamento" class="ml-1 md:ml-2 text-sm md:text-lg cursor-pointer">Acesso ao Saneamento Básico</label>
-        `;
-        containerIndicadores.appendChild(divSaneamento);
     }
 
     // grafico
@@ -1451,21 +1408,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById('renda').addEventListener('change', function () {
-        if (this.checked) {
-            // Desmarca outros checkboxes
-            document.querySelectorAll('input[type="checkbox"]:not(#renda)').forEach(cb => {
-                cb.checked = false;
-            });
-
-            // Busca dados de renda para os 10 principais municípios
-            buscarTop10Municipios(INDICADORES.RENDA)
-                .then(dados => {
-                    atualizarGrafico(dados, INDICADORES.RENDA);
-                });
-        }
-    });
-
     document.getElementById('educacao').addEventListener('change', function () {
         if (this.checked) {
             // Desmarca outros checkboxes
@@ -1478,21 +1420,6 @@ document.addEventListener('DOMContentLoaded', function () {
             buscarDadosFrequenciaEscolar()
                 .then(dados => {
                     atualizarGrafico(dados, INDICADORES.ESCOLARIDADE);
-                });
-        }
-    });
-
-    document.getElementById('saneamento').addEventListener('change', function () {
-        if (this.checked) {
-            // Desmarca outros checkboxes
-            document.querySelectorAll('input[type="checkbox"]:not(#saneamento)').forEach(cb => {
-                cb.checked = false;
-            });
-
-            // Busca dados de saneamento para os 10 principais municípios
-            buscarTop10Municipios(INDICADORES.SANEAMENTO)
-                .then(dados => {
-                    atualizarGrafico(dados, INDICADORES.SANEAMENTO);
                 });
         }
     });
