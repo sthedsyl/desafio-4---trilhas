@@ -297,7 +297,7 @@ body, html {
     background-color: white;
     width: auto;  /*Aumenta a largura do menu hamburguer*/
     padding: 15px; /*Aumenta o padding para espaçamento interno*/
-    gap: 10px;
+    gap: 12px; /* Aumenta o espaçamento dos nomes do hamburguer*/
     z-index: 999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
